@@ -30,13 +30,13 @@ text, tspan {white-space: pre;}
 <tspan x="390" y="52" class="cc">. </tspan><tspan class="key">Designation</tspan>:<tspan class="cc"> .......................................... </tspan><tspan class="value">Software Engineer</tspan> 
 <tspan x="390" y="72" class="cc">. </tspan><tspan class="key">Company</tspan>:<tspan class="cc"> ................................................. </tspan><tspan class="value">Firstwire Apps</tspan> 
 <tspan x="390" y="92" class="cc">. </tspan><tspan class="key">Experience</tspan>:<tspan class="cc"> ........................................... </tspan><tspan class="value">2 years 11 months</tspan>
-<tspan x="390" y="112" class="cc">. </tspan><tspan class="key">Education</tspan>:<tspan class="cc"> .......................................... </tspan><tspan class="value">B.Tech in CSE (AKTU)</tspan> 
+<tspan x="390" y="112" class="cc">. </tspan><tspan class="key">Education</tspan>:<tspan class="cc"> ......................................... </tspan><tspan class="value">B.Tech in CSE (AKTU)</tspan> 
 <tspan x="390" y="132">- Skills</tspan> -————————————————————————————————————————————————————————————-—-
-<tspan x="390" y="152" class="cc">. </tspan><tspan class="key">Skills</tspan>.<tspan class="key">Languages</tspan>:<tspan class="cc"> ...................... </tspan><tspan class="value">JavaScript, TypeScript, HTML/CSS</tspan> 
-<tspan x="390" y="172" class="cc">. </tspan><tspan class="key">Skills</tspan>.<tspan class="key">Frontend</tspan>:<tspan class="cc"> ................ </tspan><tspan class="value">React, Redux, Zustand, Recoil, Tailwind</tspan> 
-<tspan x="390" y="192" class="cc">. </tspan><tspan class="key">Skills</tspan>.<tspan class="key">Backend</tspan>:<tspan class="cc"> .................... </tspan><tspan class="value">Node, Express, REST APIs, WebSockets</tspan> 
-<tspan x="390" y="212" class="cc">. </tspan><tspan class="key">Skills</tspan>.<tspan class="key">Databases</tspan>:<tspan class="cc"> ...................... </tspan><tspan class="value">MongoDB, Postgres, Prisma, Redis</tspan> 
-<tspan x="390" y="232" class="cc">. </tspan><tspan class="key">Skills</tspan>.<tspan class="key">Tools</tspan>:<tspan class="cc"> ........................ </tspan><tspan class="value">Git, GitHub, TanStack Query, Axios</tspan> 
+<tspan x="390" y="152" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="cc"> ............................. </tspan><tspan class="value">JavaScript, TypeScript, HTML/CSS</tspan> 
+<tspan x="390" y="172" class="cc">. </tspan><tspan class="key">Frontend</tspan>.<tspan class="cc"> ....................... </tspan><tspan class="value">React, Redux, Zustand, Recoil, Tailwind</tspan> 
+<tspan x="390" y="192" class="cc">. </tspan><tspan class="key">Backend</tspan>.<tspan class="cc"> ........................... </tspan><tspan class="value">Node, Express, REST APIs, WebSockets</tspan> 
+<tspan x="390" y="212" class="cc">. </tspan><tspan class="key">Databases</tspan>.<tspan class="cc"> ............................. </tspan><tspan class="value">MongoDB, Postgres, Prisma, Redis</tspan> 
+<tspan x="390" y="232" class="cc">. </tspan><tspan class="key">Tools</tspan>.<tspan class="cc"> ............................... </tspan><tspan class="value">Git, GitHub, TanStack Query, Axios</tspan> 
 <tspan x="390" y="252">- Projects</tspan> -——————————————————————————————————————————————————————————-—-
 <tspan x="390" y="272" class="cc">. </tspan><tspan class="key">Project</tspan>:<tspan class="cc"> ............................................ </tspan><tspan class="value">The Democratic Club</tspan> 
 <tspan x="390" y="292" class="cc">. </tspan><tspan class="key">About</tspan>:<tspan class="cc"> ..................... </tspan><tspan class="value">Solves the problem of one person controlling</tspan> 
