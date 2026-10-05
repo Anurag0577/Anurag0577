@@ -1,0 +1,729 @@
+<title>GitHub Profile Stats Setup Guide</title>
+
+<style>
+/* Design tokens */
+:root {
+  /* Layout: Technical documentation with clear hierarchy and code-forward presentation */
+  --bg: #ffffff;
+  --surface: #f8f9fa;
+  --border: #e1e4e8;
+  --text: #24292e;
+  --text-muted: #586069;
+  --accent: #0366d6;
+  --accent-hover: #0256c7;
+  --success: #28a745;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --code-bg: #f6f8fa;
+  --code-border: #d1d5da;
+
+  /* Typography */
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'SF Mono', 'Monaco', 'Cascadia Code', 'Consolas', monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #30363d;
+    --text: #c9d1d9;
+    --text-muted: #8b949e;
+    --accent: #58a6ff;
+    --accent-hover: #79c0ff;
+    --success: #3fb950;
+    --warning: #d29922;
+    --danger: #f85149;
+    --code-bg: #161b22;
+    --code-border: #30363d;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --border: #30363d;
+  --text: #c9d1d9;
+  --text-muted: #8b949e;
+  --accent: #58a6ff;
+  --accent-hover: #79c0ff;
+  --success: #3fb950;
+  --warning: #d29922;
+  --danger: #f85149;
+  --code-bg: #161b22;
+  --code-border: #30363d;
+  color-scheme: dark;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding: 24px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+header {
+  padding-block: 32px;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 48px;
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-wrap: balance;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.meta {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  font-weight: 500;
+}
+
+.badge svg {
+  width: 14px;
+  height: 14px;
+}
+
+section {
+  margin-bottom: 48px;
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+
+p {
+  margin-bottom: 16px;
+  max-width: 65ch;
+}
+
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--accent);
+  color: white;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.alert {
+  padding: 16px 20px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.alert svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+}
+
+.alert-warning {
+  background: rgba(255, 193, 7, 0.1);
+  border: 1px solid var(--warning);
+  color: var(--text);
+}
+
+.alert-info {
+  background: rgba(3, 102, 214, 0.1);
+  border: 1px solid var(--accent);
+  color: var(--text);
+}
+
+.alert-success {
+  background: rgba(40, 167, 69, 0.1);
+  border: 1px solid var(--success);
+  color: var(--text);
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--code-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--code-border);
+}
+
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: 8px;
+  padding: 16px;
+  overflow-x: auto;
+  margin-bottom: 24px;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+.step-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.step {
+  display: flex;
+  gap: 16px;
+}
+
+.step-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.step h3 {
+  margin-top: 0;
+}
+
+ul, ol {
+  margin-left: 24px;
+  margin-bottom: 16px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+.command {
+  user-select: all;
+  cursor: text;
+}
+
+.permissions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.permission-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.permission-card h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.permission-card p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.checklist {
+  list-style: none;
+  margin-left: 0;
+}
+
+.checklist li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 8px 0;
+}
+
+.checklist li::before {
+  content: '☐';
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+footer {
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 16px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .step {
+    flex-direction: column;
+  }
+
+  .permissions-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<div class="container">
+  <header>
+    <h1>GitHub Profile Stats Generator</h1>
+    <p class="subtitle">Automated statistics display for your GitHub profile README with daily updates via GitHub Actions</p>
+    <div class="meta">
+      <span class="badge">
+        <svg fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub Actions
+      </span>
+      <span class="badge">
+        <svg fill="currentColor" viewBox="0 0 16 16"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z"/></svg>
+        Beginner Friendly
+      </span>
+      <span class="badge">
+        <svg fill="currentColor" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/></svg>
+        ~15 min setup
+      </span>
+    </div>
+  </header>
+
+  <section>
+    <div class="alert alert-warning">
+      <svg fill="currentColor" viewBox="0 0 16 16"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+      <div>
+        <strong>Security Notice:</strong> This guide shows you how to create your own setup. Never share your GitHub Personal Access Token with anyone. Keep it secret in GitHub Secrets only.
+      </div>
+    </div>
+
+    <h2>What This Does</h2>
+    <p>This project automatically generates and updates statistics on your GitHub profile README, displaying:</p>
+    <ul>
+      <li>Total repositories you own and contribute to</li>
+      <li>Total stars across your repositories</li>
+      <li>Total commits you've made</li>
+      <li>Lines of code written (additions and deletions)</li>
+      <li>Follower count</li>
+    </ul>
+    <p>The statistics automatically update daily via GitHub Actions at 04:00 UTC, and display in both light and dark mode SVG files.</p>
+  </section>
+
+  <section>
+    <h2>Prerequisites</h2>
+    <ul class="checklist">
+      <li>A GitHub account</li>
+      <li>Git installed on your computer</li>
+      <li>Python 3.11 or higher installed locally (for testing)</li>
+      <li>Basic command line knowledge</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Step-by-Step Setup</h2>
+
+    <div class="step-list">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>Fork or Download the Repository</h3>
+          <p>You need to get a copy of the source code. You have two options:</p>
+
+          <p><strong>Option A: Fork the repository (Recommended)</strong></p>
+          <ol>
+            <li>Visit the original repository (ask for the link or search for GitHub profile stats generators)</li>
+            <li>Click the "Fork" button in the top right</li>
+            <li>This creates a copy under your account</li>
+          </ol>
+
+          <p><strong>Option B: Download as ZIP</strong></p>
+          <ol>
+            <li>Download the repository as a ZIP file</li>
+            <li>Extract it to your computer</li>
+            <li>Create a new repository on GitHub matching your username</li>
+            <li>Upload all files to your new repository</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>Create Your GitHub Username Repository</h3>
+          <p>GitHub profiles use a special repository that matches your username.</p>
+          <ol>
+            <li>Go to <a href="https://github.com/new" target="_blank">github.com/new</a></li>
+            <li>Repository name: <strong>Type your exact GitHub username</strong></li>
+            <li>Make it <strong>Public</strong></li>
+            <li>Check "Add a README file"</li>
+            <li>Click "Create repository"</li>
+          </ol>
+
+          <div class="alert alert-info">
+            <svg fill="currentColor" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg>
+            <div>The repository name must exactly match your username. For example, if your username is <code>john-doe</code>, create a repository named <code>john-doe</code>.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>Generate a GitHub Personal Access Token</h3>
+          <p>The token allows the script to read your public GitHub statistics securely.</p>
+
+          <ol>
+            <li>Go to <a href="https://github.com/settings/tokens?type=beta" target="_blank">GitHub Settings → Tokens (Fine-grained)</a></li>
+            <li>Click <strong>"Generate new token"</strong></li>
+            <li>Token name: <code>github-stats-generator</code></li>
+            <li>Expiration: Choose <strong>90 days</strong> or <strong>Custom</strong> (you'll need to regenerate it later)</li>
+            <li>Repository access: <strong>All repositories</strong></li>
+          </ol>
+
+          <h4>Required Permissions (Account level):</h4>
+          <div class="permissions-grid">
+            <div class="permission-card">
+              <h4>Followers</h4>
+              <p>Read-only access to view follower count</p>
+            </div>
+            <div class="permission-card">
+              <h4>Starring</h4>
+              <p>Read-only access to count repository stars</p>
+            </div>
+          </div>
+
+          <h4>Required Permissions (Repository level):</h4>
+          <div class="permissions-grid">
+            <div class="permission-card">
+              <h4>Commit statuses</h4>
+              <p>Read-only access to commit data</p>
+            </div>
+            <div class="permission-card">
+              <h4>Contents</h4>
+              <p>Read-only access to repository contents</p>
+            </div>
+            <div class="permission-card">
+              <h4>Metadata</h4>
+              <p>Read-only access to repository metadata</p>
+            </div>
+          </div>
+
+          <ol start="6">
+            <li>Click <strong>"Generate token"</strong> at the bottom</li>
+            <li><strong>Copy the token immediately</strong> — you won't see it again!</li>
+          </ol>
+
+          <div class="alert alert-warning">
+            <svg fill="currentColor" viewBox="0 0 16 16"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+            <div><strong>Critical:</strong> Save this token somewhere safe temporarily. You'll add it to GitHub Secrets in the next step. Never commit it to your repository or share it publicly.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h3>Add Token to GitHub Secrets</h3>
+          <p>GitHub Secrets keep your token secure and private.</p>
+
+          <ol>
+            <li>Go to your repository: <code>https://github.com/YOUR_USERNAME/YOUR_USERNAME</code></li>
+            <li>Click <strong>Settings</strong> (top right of your repository)</li>
+            <li>In the left sidebar: <strong>Secrets and variables</strong> → <strong>Actions</strong></li>
+            <li>Click <strong>"New repository secret"</strong></li>
+            <li>Name: <code class="command">ACCESS_TOKEN</code> (must be exact)</li>
+            <li>Secret: Paste your token from step 3</li>
+            <li>Click <strong>"Add secret"</strong></li>
+          </ol>
+
+          <div class="alert alert-success">
+            <svg fill="currentColor" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>
+            <div>Your token is now safely stored. GitHub Actions can use it, but no one can view it.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">5</div>
+        <div class="step-content">
+          <h3>Clone and Configure the Repository</h3>
+          <p>Download the repository to your computer and customize it.</p>
+
+          <pre><code class="command"># Clone your repository
+git clone https://github.com/YOUR_USERNAME/YOUR_USERNAME.git
+cd YOUR_USERNAME</code></pre>
+
+          <p>Edit the following files to customize for yourself:</p>
+
+          <h4>File: <code>.github/workflows/build.yaml</code></h4>
+          <p>Change line 36 to your username:</p>
+          <pre><code>USER_NAME: YOUR_GITHUB_USERNAME</code></pre>
+
+          <h4>File: <code>today.py</code></h4>
+          <p>On line 451, change the birthday (optional, for age calculation):</p>
+          <pre><code>age_data, age_time = perf_counter(daily_readme, datetime.datetime(2002, 7, 5))</code></pre>
+          <p>Change <code>(2002, 7, 5)</code> to your birth year, month, day, or remove this line if you don't want age displayed.</p>
+
+          <h4>Files: <code>dark_mode.svg</code> and <code>light_mode.svg</code></h4>
+          <p>These SVG files contain the visual design. You can customize:</p>
+          <ul>
+            <li>Contact information and links (search for placeholder text)</li>
+            <li>Colors and styling (if you know SVG/CSS)</li>
+            <li>Layout and positioning</li>
+          </ul>
+          <p>The script will update the statistics automatically, but static content like your name stays as you set it.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">6</div>
+        <div class="step-content">
+          <h3>Enable GitHub Actions Permissions</h3>
+          <p>Allow the workflow to commit updates back to your repository.</p>
+
+          <ol>
+            <li>Go to your repository on GitHub</li>
+            <li>Click <strong>Settings</strong></li>
+            <li>In left sidebar: <strong>Actions</strong> → <strong>General</strong></li>
+            <li>Scroll to <strong>"Workflow permissions"</strong></li>
+            <li>Select <strong>"Read and write permissions"</strong></li>
+            <li>Check <strong>"Allow GitHub Actions to create and approve pull requests"</strong></li>
+            <li>Click <strong>"Save"</strong></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">7</div>
+        <div class="step-content">
+          <h3>Test Locally (Optional but Recommended)</h3>
+          <p>Before pushing to GitHub, test that everything works on your computer.</p>
+
+          <h4>Create a <code>.env</code> file for local testing:</h4>
+          <pre><code class="command"># Copy the example file
+cp .env.example .env
+
+# Edit .env with your text editor and add:
+ACCESS_TOKEN=your_token_from_step_3
+USER_NAME=YOUR_GITHUB_USERNAME</code></pre>
+
+          <h4>Install dependencies and run:</h4>
+          <pre><code class="command"># Install required Python packages
+pip install -r cache/requirements.txt
+
+# Run the script
+python today.py</code></pre>
+
+          <p>If successful, you'll see:</p>
+          <ul>
+            <li>Calculation times for each statistic</li>
+            <li>Total GitHub API calls made</li>
+            <li>Updated <code>dark_mode.svg</code> and <code>light_mode.svg</code> files</li>
+          </ul>
+
+          <div class="alert alert-warning">
+            <svg fill="currentColor" viewBox="0 0 16 16"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+            <div><strong>Important:</strong> Add <code>.env</code> to your <code>.gitignore</code> file to prevent accidentally committing your token!</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">8</div>
+        <div class="step-content">
+          <h3>Push to GitHub and Trigger First Run</h3>
+          <p>Upload your customized files and run the workflow.</p>
+
+          <pre><code class="command"># Add all changed files
+git add .
+
+# Commit with a message
+git commit -m "Initial setup for GitHub stats generator"
+
+# Push to your repository
+git push origin main</code></pre>
+
+          <h4>Manually trigger the first workflow run:</h4>
+          <ol>
+            <li>Go to your repository on GitHub</li>
+            <li>Click the <strong>"Actions"</strong> tab</li>
+            <li>Select <strong>"README build"</strong> from the left sidebar</li>
+            <li>Click <strong>"Run workflow"</strong> dropdown (right side)</li>
+            <li>Click the green <strong>"Run workflow"</strong> button</li>
+            <li>Wait ~30 seconds and refresh — you should see a green checkmark ✓</li>
+          </ol>
+
+          <div class="alert alert-success">
+            <svg fill="currentColor" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>
+            <div>If you see a success message, the workflow has automatically updated your stats and committed the changes!</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">9</div>
+        <div class="step-content">
+          <h3>Update Your README to Display Stats</h3>
+          <p>Add the generated SVG images to your profile README.</p>
+
+          <p>Edit your <code>README.md</code> file and add:</p>
+          <pre><code class="command"># Your Name
+
+![GitHub Stats](dark_mode.svg#gh-dark-mode-only)
+![GitHub Stats](light_mode.svg#gh-light-mode-only)
+
+## About Me
+[Your bio and information here]</code></pre>
+
+          <p>The <code>#gh-dark-mode-only</code> and <code>#gh-light-mode-only</code> fragments ensure the correct theme displays based on the viewer's GitHub theme preference.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Automation Schedule</h2>
+    <p>Your statistics will automatically update:</p>
+    <ul>
+      <li><strong>Daily at 04:00 UTC</strong> (scheduled via cron)</li>
+      <li><strong>Every time you push to main branch</strong> (on push trigger)</li>
+      <li><strong>Manually via Actions tab</strong> (workflow_dispatch)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Troubleshooting</h2>
+
+    <h3>Workflow fails with "Bad credentials"</h3>
+    <ul>
+      <li>Check that your token is added as <code>ACCESS_TOKEN</code> in GitHub Secrets (exact name)</li>
+      <li>Verify the token hasn't expired</li>
+      <li>Ensure all required permissions were granted when creating the token</li>
+    </ul>
+
+    <h3>Workflow succeeds but no stats appear</h3>
+    <ul>
+      <li>Check that <code>USER_NAME</code> in <code>.github/workflows/build.yaml</code> matches your username exactly</li>
+      <li>Verify the SVG files were committed (check the latest commit from GitHub-Actions-Bot)</li>
+      <li>Make sure your README.md references the correct SVG file paths</li>
+    </ul>
+
+    <h3>Stats show zero or incorrect values</h3>
+    <ul>
+      <li>Wait a few minutes after first run — the cache builds incrementally</li>
+      <li>For private repositories: they won't be counted unless your token has private repo access</li>
+      <li>Check that your repositories have commit history (empty repos show zero)</li>
+    </ul>
+
+    <h3>Node.js deprecation warnings</h3>
+    <ul>
+      <li>These are informational warnings from GitHub Actions</li>
+      <li>They don't cause failures — the workflow has been updated to the latest action versions</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Security Best Practices</h2>
+    <ul class="checklist">
+      <li>Never commit your <code>.env</code> file to Git</li>
+      <li>Add <code>.env</code> to your <code>.gitignore</code> file</li>
+      <li>Only use GitHub Secrets for storing tokens in CI/CD</li>
+      <li>Use fine-grained tokens with minimal required permissions</li>
+      <li>Set token expiration and regenerate periodically</li>
+      <li>If you accidentally expose a token, revoke it immediately at <a href="https://github.com/settings/tokens" target="_blank">github.com/settings/tokens</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Customization Ideas</h2>
+    <ul>
+      <li>Edit the SVG files to change colors, fonts, and layout</li>
+      <li>Modify <code>today.py</code> to add or remove statistics</li>
+      <li>Change the cron schedule in <code>build.yaml</code> to update more or less frequently</li>
+      <li>Add badges, links, or additional sections to your README</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>This guide helps you create your own GitHub profile stats generator.</p>
+    <p>Keep your credentials secure and never share your access tokens.</p>
+  </footer>
+</div>
+
+<script>
+// No runtime functionality needed for this documentation page
+// All interactions are standard links and native browser behavior
+</script>
