@@ -5,6 +5,11 @@ on:
       - main
   schedule:
     - cron: "0 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,7 +17,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
       - name: Get Python 3.11
         uses: actions/setup-python@v5
         with:
@@ -30,11 +35,14 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           USER_NAME: Anurag0577
         run: python today.py
-      - name: Commit
+      - name: Commit and Push
         run: |-
-          git add .
-          git diff
           git config --global user.email "github-actions-bot@anurag0577.github.io"
           git config --global user.name "Anurag0577/GitHub-Actions-Bot"
-          git commit -m "Updated README" -a || echo "No changes to commit"
-          git push
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Updated README and stats [skip ci]"
+            git push
+          fi
